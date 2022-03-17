@@ -18,5 +18,12 @@ module.exports = {
   },
   plugins: [],
   globals: {},
-  overrides: [],
+  overrides: [
+    {
+      files: ['./worker.js'],
+      rules: {
+        'no-restricted-globals': 'off',
+      },
+    },
+  ],
 }
