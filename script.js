@@ -1,8 +1,8 @@
 import loadScript from 'browser-load-script'
-import {getJsonpOptions} from './utils.js'
+import {getRequestOptions} from './utils.js'
 
 async function requestJsonp(baseUrl, options) {
-  const {url, callback} = getJsonpOptions(baseUrl, options)
+  const {url, callback} = getRequestOptions(baseUrl, options)
 
   let data
   window[callback] = (callbackData) => {

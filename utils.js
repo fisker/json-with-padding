@@ -4,7 +4,7 @@ const randomString = () =>
 const CALLBACK_FUNCTION_NAME_PREFIX = 'jsonp_callback_'
 const DEFAULT_CALLBACK_PARAMETER_NAME = 'callback'
 
-export const getJsonpOptions = (url, options) => {
+const getRequestOptions = (url, options) => {
   const {callback: parameterName} = {
     callback: DEFAULT_CALLBACK_PARAMETER_NAME,
     ...options,
@@ -15,8 +15,7 @@ export const getJsonpOptions = (url, options) => {
   const separator = url.includes('?') ? '&' : '?'
   url += `${separator}${parameterName}=${functionName}`
 
-  return {
-    url,
-    callback: functionName,
-  }
+  return {url, callback: functionName}
 }
+
+export {getRequestOptions}
