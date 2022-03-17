@@ -3,7 +3,7 @@ import loadScript from 'browser-load-script'
 const randomString = () =>
   (Math.random() * Date.now()).toString(16).replace('.', '').slice(0, 7)
 
-function requestJsonp(url, options) {
+async function requestJsonp(url, options) {
   const {callback: callbackParameterName} = {
     callback: 'callback',
     ...options,
@@ -14,20 +14,18 @@ function requestJsonp(url, options) {
   url += '='
 
   const callbackFunctionName = `jsonp_callback_${randomString()}`
+  let data
+  window[callbackFunctionName] = (callbackData) => {
+    data = callbackData
+  }
 
-  return new Promise(function (resolve, reject) {
-    window[callbackFunctionName] = function (data) {
-      try {
-        resolve(data)
-      } catch (error) {
-        reject(error)
-      } finally {
-        delete window[callbackFunctionName]
-      }
-    }
+  try {
+    await loadScript(url + callbackFunctionName)
+  } finally {
+    delete window[callbackFunctionName]
+  }
 
-    loadScript(url + callbackFunctionName)
-  })
+  return data
 }
 
 export default requestJsonp

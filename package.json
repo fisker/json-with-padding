@@ -1,6 +1,6 @@
 {
   "name": "json-with-padding",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Send JSONP (JSON with Padding) request.",
   "homepage": "https://github.com/fisker/json-with-padding#readme",
   "bugs": {
@@ -40,6 +40,9 @@
     "release": "run-s clean lint build test format dist",
     "test": "echo test not added"
   },
+  "dependencies": {
+    "browser-load-script": "0.0.3"
+  },
   "devDependencies": {
     "@fisker/commitlint-config": "2.0.2",
     "@fisker/eslint-config": "10.0.13",
@@ -59,8 +62,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "dependencies": {
-    "browser-load-script": "0.0.3"
   }
 }
