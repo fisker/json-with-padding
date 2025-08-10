@@ -44,7 +44,7 @@
     "test": "echo test not added"
   },
   "dependencies": {
-    "browser-load-script": "0.0.4"
+    "browser-load-script": "1.0.0"
   },
   "devDependencies": {
     "@fisker/commitlint-config": "2.0.5",
